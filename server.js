@@ -104,6 +104,16 @@ var SampleApp = function() {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
         };
+
+        self.routes['/iglobe'] = function(req, res) {
+            res.setHeader('Content-Type', 'text/html');
+            res.send(self.cache_get('iglobe.html') );
+        };
+
+        self.routes['/patients'] = function(req, res) {
+            res.setHeader('Content-Type', 'text/html');
+            res.send(self.cache_get('patients.html') );
+        };
     };
 
 
