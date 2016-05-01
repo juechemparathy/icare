@@ -4,6 +4,7 @@ var express = require('express');
 var fs      = require('fs');
 
 
+
 /**
  *  Define the sample application.
  */
@@ -124,6 +125,7 @@ var SampleApp = function() {
     self.initializeServer = function() {
         self.createRoutes();
         self.app = express.createServer();
+        self.app.use(express.static(__dirname + '/'));
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
