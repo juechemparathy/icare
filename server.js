@@ -1,6 +1,10 @@
 // load the things we need
 var express = require('express');
+var fs      = require('fs');
 var app = express();
+
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -30,5 +34,9 @@ app.get('/about', function(req, res) {
     res.render('pages/about');
 });
 
-app.listen(8080);
+app.listen(port, ipaddress, function() {
+    console.log('%s: Node server started on %s:%d ...',
+        Date(Date.now() ), ipaddress, port);
+});
+
 console.log('8080 is the magic port');
