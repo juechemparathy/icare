@@ -9,12 +9,6 @@ var app = express();
 var db_name = process.env.OPENSHIFT_APP_NAME || "helpio";
 var connection_string = '127.0.0.1:27017/' + db_name;
 
-process.env.OPENSHIFT_MONGODB_DB_USERNAME = "admin";
-process.env.OPENSHIFT_MONGODB_DB_PASSWORD = "vgrzFZ7YbdkX";
-process.env.OPENSHIFT_MONGODB_DB_HOST = "127.0.0.1";
-process.env.OPENSHIFT_MONGODB_DB_PORT = "27017";
-process.env.OPENSHIFT_APP_NAME = "helpio";
-
 // if OPENSHIFT env variables are present, use the available connection info:
 if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -23,6 +17,13 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 } else {
+
+    process.env.OPENSHIFT_MONGODB_DB_USERNAME = "admin";
+    process.env.OPENSHIFT_MONGODB_DB_PASSWORD = "vgrzFZ7YbdkX";
+    process.env.OPENSHIFT_MONGODB_DB_HOST = "127.0.0.1";
+    process.env.OPENSHIFT_MONGODB_DB_PORT = "27017";
+    process.env.OPENSHIFT_APP_NAME = "helpio";
+
     connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
         process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
         process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
