@@ -2,6 +2,8 @@
 var express = require('express');
 var fs      = require('fs');
 var app = express();
+var api=require('./public/js/mongoapi');
+
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
@@ -14,7 +16,7 @@ app.use(express.static(__dirname + '/public'));
 
 // index page
 app.get('/', function(req, res) {
-    res.render('pages/index');
+    res.render('pages/index', api.fetchIndexPage());
 });
 
 app.get('/patients', function(req, res) {
