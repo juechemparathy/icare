@@ -1,15 +1,10 @@
 // load the things we need
 var express = require('express');
 var fs      = require('fs');
-var api=require('./public/js/mongoapi');
-
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 5000;
 var app = express();
-
-
-
 
 var db_name = process.env.OPENSHIFT_APP_NAME || "helpio";
 var connection_string = '127.0.0.1:27017/' + db_name;
