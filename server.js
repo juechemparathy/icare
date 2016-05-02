@@ -1,39 +1,96 @@
 // load the things we need
 var express = require('express');
 var fs      = require('fs');
-var app = express();
 var api=require('./public/js/mongoapi');
 
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 5000;
+var app = express();
+
+
+
+
+var db_name = process.env.OPENSHIFT_APP_NAME || "helpio";
+var connection_string = '127.0.0.1:27017/' + db_name;
+
+process.env.OPENSHIFT_MONGODB_DB_USERNAME = "admin";
+process.env.OPENSHIFT_MONGODB_DB_PASSWORD = "vgrzFZ7YbdkX";
+process.env.OPENSHIFT_MONGODB_DB_HOST = "127.0.0.1";
+process.env.OPENSHIFT_MONGODB_DB_PORT = "27017";
+process.env.OPENSHIFT_APP_NAME = "helpio";
+
+// if OPENSHIFT env variables are present, use the available connection info:
+if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+    connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+        process.env.OPENSHIFT_APP_NAME;
+} else {
+    connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+        process.env.OPENSHIFT_APP_NAME;
+}
+var mongojs = require("mongojs");
+var db = mongojs(connection_string, ["helpio"]);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+var routes = require('./routes/index');
+var patients = require('./routes/patients');
+var iglobe = require('./routes/iglobe');
+var patientDetail = require('./routes/patientDetail');
+
+
 // use res.render to load up an ejs view file
 app.use(express.static(__dirname + '/public'));
 
-// index page
-app.get('/', function(req, res) {
-    res.render('pages/index', api.fetchIndexPage());
+
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
 });
 
-app.get('/patients', function(req, res) {
-    res.render('pages/patients');
+app.use('/', routes);
+app.use('/patients', patients);
+app.use('/iglobe', iglobe);
+app.use('/patientDetail', patientDetail);
+
+// catch 404 and forwarding to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
-app.get('/patientDetail', function(req, res) {
-    res.render('pages/patientDetail');
-});
+/// error handlers
 
-app.get('/iglobe', function(req, res) {
-    res.render('pages/iglobe');
-});
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            message: err.message,
+            error: err
+        });
+    });
+}
 
-// about page
-app.get('/about', function(req, res) {
-    res.render('pages/about');
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 app.listen(port, ipaddress, function() {
@@ -41,4 +98,4 @@ app.listen(port, ipaddress, function() {
         Date(Date.now() ), ipaddress, port);
 });
 
-console.log('8080 is the magic port');
+console.log('5000 is the magic port');
