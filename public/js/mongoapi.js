@@ -1,11 +1,11 @@
+// load the things we need
+var fs      = require('fs');
+
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 5000;
+
 var db_name = process.env.OPENSHIFT_APP_NAME || "helpio";
 var connection_string = '127.0.0.1:27017/' + db_name;
-
-process.env.OPENSHIFT_MONGODB_DB_USERNAME = "admin";
-process.env.OPENSHIFT_MONGODB_DB_PASSWORD = "vgrzFZ7YbdkX";
-process.env.OPENSHIFT_MONGODB_DB_HOST = "127.0.0.1";
-process.env.OPENSHIFT_MONGODB_DB_PORT = "27017";
-process.env.OPENSHIFT_APP_NAME = "helpio";
 
 // if OPENSHIFT env variables are present, use the available connection info:
 if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
@@ -21,26 +21,8 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 }
+
+// use res.render to load up an ejs view file
+console.log("Connection string:" +connection_string)
 var mongojs = require("mongojs");
 var db = mongojs(connection_string, ["helpio"]);
-//var events = db.collection("Events");
-
-exports.fetchIndexPage = function (req, res, next) {
-    console.log("ceating Index page");
-    db.collection('core').find({"name": "mission"}, function (err, event) {
-        if (err) {
-            return next(err);
-        }
-        return res.render('pages/index',{
-            title: event[0].name,
-            statement1:event[0].statement1,
-            statement2:event[0].statement2
-        });
-
-    });
-}
-
-
-
-
-
