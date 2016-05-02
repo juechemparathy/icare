@@ -3,7 +3,7 @@ var express = require('express');
 var fs      = require('fs');
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 5000;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var app = express();
 
 var db_name = process.env.OPENSHIFT_APP_NAME || "helpio";
