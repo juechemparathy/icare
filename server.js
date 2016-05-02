@@ -3,7 +3,7 @@ var express = require('express');
 var fs      = require('fs');
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 5000;
 var app = express();
 
 var db_name = process.env.OPENSHIFT_APP_NAME || "helpio";
@@ -29,6 +29,9 @@ if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 }
+
+// use res.render to load up an ejs view file
+console.log("Connection string:" +connection_string)
 var mongojs = require("mongojs");
 var db = mongojs(connection_string, ["helpio"]);
 
@@ -71,7 +74,6 @@ if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
-            message: err.message,
             message: err.message,
             error: err
         });
