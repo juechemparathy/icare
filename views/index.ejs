@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/prefixfree.min.js"></script>
-  <script src="js/progress.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -35,6 +34,29 @@
           <li><a href="/patients">Fund a patient</a></li>
           <li><a href="/patientDetail">Patient Details</a></li>
           <li><a href="#staff">Team</a></li>
+
+          <!--<span class="glyphicons glyphicons-lock"></span>-->
+          <li class="btn-group">
+            <div id="loggedOutItem" class="btn-group" style="display:none;">
+              <a href="signup.html" class="btn btn-info">Sign Up</a>
+              <a href="login.html" class="btn btn-primary">Login</a>
+            </div>
+            <div id="loggedInItem" class="btn-group" style="display:none;">
+              <button type="button" class="btn btn-danger">
+                <a href="/donor/27af8fe82345" id="username"></a>
+              </button>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+
+
+              <ul class="dropdown-menu">
+                <li class="text-primary"><a href="#" style="color:black" onclick="logout()">Log Out</a></li>
+              </ul>
+            </div>
+          </li>
+
         </ul>
       </div><!-- collapse navbar-collapse -->
     </div><!-- container -->
