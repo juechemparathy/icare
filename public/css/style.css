@@ -129,7 +129,7 @@ header .inbody .navbar-brand span.subhead {
 }
 
 .carousel.fade .item {
-  transition: opacity ease-out .7s;
+  transition: opacity ease-out .35s;
   left: 0;
   opacity: 0;
   top: 0;
