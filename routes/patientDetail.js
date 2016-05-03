@@ -3,20 +3,14 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('patientsDetail');
+    res.render('patientDetail');
 });
 
-//   /* GET Hello World page. */
-//   router.get('/helloworld', function(req, res) {
-//       res.render('helloworld', { title: 'Hello, World!' })
-//   });
-//
 /* GET Userlist page. */
 router.get('/test', function(req, res) {
     var db = req.db;
     //collection.find({},{},function(e,docs){
     db.collection('core').find({"name": "mission"}, function (err, event) {
-
         if (err) {
             res.render('error');
         } else {

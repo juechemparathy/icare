@@ -4,12 +4,47 @@
 <head>
   <meta charset="UTF-8">
   <title>iCare</title>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.js"></script>
   <script src="js/prefixfree.min.js"></script>
+
+  <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+  <script src="js/liquidFillGauge.js" language="JavaScript"></script>
+  <style>
+    .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+  </style>
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!--<script type="text/javascript">-->
+    <!--function getPatientData() {-->
+      <!--//e.preventDefault();-->
+      <!--httpRequest = new XMLHttpRequest();-->
+      <!--httpRequest.onreadystatechange = handleResponse;-->
+      <!--httpRequest.open("POST", "https://raw.githubusercontent.com/juechemparathy/juechemparathy.github.io/master/data/patients-dummy.json");-->
+      <!--httpRequest.send();-->
+    <!--}-->
+
+    <!--function handleResponse() {-->
+      <!--if (httpRequest.readyState == 4 && httpRequest.status == 200) {-->
+        <!--var patientJson = httpRequest.responseText;-->
+        <!--var patientData = JSON.parse(patientJson);-->
+        <!--document.getElementById("name").innerHTML = patientData[0].name;-->
+        <!--document.getElementById("description").innerHTML = patientData[0].description;-->
+        <!--document.getElementById("image").src = patientData[0].image;-->
+        <!--var value = (patientData[0].fundsgot) / (patientData[0].fundsneeded);-->
+      <!--}-->
+    <!--}-->
+
+  <!--</script>-->
 </head>
 
+<!--<body onload="getPatientData()">-->
 <body>
 
 <header>
@@ -31,26 +66,84 @@
           <li><a href="#statistics">Statistics</a></li>
           <li><a href="#patients">Patients</a></li>
           <li><a href="#staff">Team</a></li>
-        </ul>        
+        </ul>
       </div><!-- collapse navbar-collapse -->
     </div><!-- container -->
   </nav>
 </header>
 
 <div class="main">
-  <div class="page" id="mission">
-    <div class="content container">
-      <h2>Mission</h2>
+
+  <div class="page" id="staff">
+    <div class="container-fluid">
+      <h2>Thanks for helping me!</h2>
       <div class="row">
-        <p class="col-md-5 col-md-offset-1">Our mission is to fund low-cost, high-impact healthcare. While we would like to eventually work in the United States, we currently focus our efforts in low income countries because it’s more frequently the case that a relatively small amount of money stands in the way of someone receiving life-changing care.</p>
-        <p class="col-md-5">We take patient privacy very seriously. It’s important to us that every patient posted on iCare understands what iCare is and how it works. Our Medical Partners are responsible for ensuring that every patient understands Watsi and explicitly wishes to participate in the program.</p>
-      </div><!-- row -->
-    </div><!-- content container -->
-  </div><!-- mission page -->
+
+        <div class="teammember col-lg-6">
+          <div class="row">
+            <div class="photo col-xs-12 col-xs-offset-4 col-sm-4 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
+              <img class="img-circle" src="images/profile_pic.jpg" alt="Photo of Dr Sanders">
+            </div><!-- photo -->
+            <div class="info col-xs-12 col-xs-offset-2 col-sm-7 col-sm-offset-0 col-md-6 col-lg-8">
+              <h3>Brian is a child from Kenya who needs $540 for testicular surgery.</h3>
+              <p>Brian is a wonderfully cheeky young boy, with so much goodness and potential in him. I know he is greatly at risk and it is my only wish that he gets treated for his condition,” shares Brian’s mother. Brian is a two-year-old toddler who lives with his older sister and parents in the suburbs of Nairobi, Kenya.</p>
+            </div><!-- info -->
+
+            <div class=" col-xs-12 col-xs-offset-4 col-sm-4 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
+              <!--paypal-->
+              <form action="" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+                        data-amount="999"
+                        data-name="Stripe.com"
+                        data-description="Widget"
+                        data-image="http://www.emrindustry.com/wp-content/uploads/2015/04/Logo-ICARE_twt2.jpg"
+                        data-locale="auto">
+                </script>
+              </form>
+
+            </div>
+
+          </div> <!-- inner row -->
+        </div> <!-- teammember -->
+
+        <div class="col-lg-6">
+          <div class="row">
+            <div class=" col-xs-12 col-xs-offset-4 col-sm-4 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
+
+              <div class="d3js">
+
+                <svg id="fillgauge2" width="97%" height="50px"></svg>
+                <script language="JavaScript">
+                  var percent2 = 50.0;
+                  var config2 = liquidFillGaugeDefaultSettings();
+                  config2.circleColor = "#4E9258";
+                  config2.textColor = "#0E5144";
+                  config2.waveTextColor = "#79d279";
+                  config2.waveColor = "#4E9258"
+                  config2.circleThickness = 0.1;
+                  config2.circleFillGap = 0.2;
+                  config2.textVertPosition = 0.5;
+                  config2.waveAnimateTime = 2000;
+                  config2.waveHeight = 0.2;
+                  var gauge2= loadLiquidFillGauge("fillgauge2", percent2, config2);
+
+                </script>
+
+              </div>
+
+            </div><!-- progress -->
+          </div> <!-- inner row -->
+        </div> <!-- teammember -->
+
+      </div><!-- outer row -->
+    </div><!-- container -->
+  </div><!-- staff page -->
 
   <div class="page" id="patients">
+    <h2>Related Patients</h2>
     <div class="container-fluid">
-      <h2>Testimonials</h2>
       <div class="row">
         <blockquote class="col-md-6 col-lg-3" id="patient1">
           <div class="quote">
@@ -162,99 +255,9 @@
     </div><!-- container -->
   </div><!-- patients page -->
 
-  <div class="page" id="staff">
-    <div class="container-fluid">
-      <h2 id="ourstaff">Our Team</h2>
-      <div class="row">
 
-        <div class="teammember col-lg-3">
-          <div class="row">
-            <div class="photo col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
-              <img class="img-circle" src="images/profile_pic.jpg" alt="Photo of Dr Sanders">
-            </div><!-- photo -->
-            <div class="info col-xs-8 col-xs-offset-2 col-sm-7 col-sm-offset-0 col-md-6 col-lg-8">
-              <h3>Jue Chemparathy</h3>
-              <p>Details If needed</p>
-            </div><!-- info -->
-          </div> <!-- inner row -->
-        </div> <!-- teammember -->
 
-        <div class="teammember col-lg-3">
-          <div class="row">
-            <div class="photo col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
-              <img class="img-circle" src="images/profile_pic.jpg" alt="Photo of Dr Sanders">
-            </div><!-- photo -->
-            <div class="info col-xs-8 col-xs-offset-2 col-sm-7 col-sm-offset-0 col-md-6 col-lg-8">
-              <h3>Nirupama</h3>
-              <p>Details If needed</p>
-            </div><!-- info -->
-          </div> <!-- inner row -->
-        </div> <!-- teammember -->
 
-        <div class="teammember col-lg-3">
-          <div class="row">
-            <div class="photo col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
-              <img class="img-circle" src="images/profile_pic.jpg" alt="Photo of Dr Sanders">
-            </div><!-- photo -->
-            <div class="info col-xs-8 col-xs-offset-2 col-sm-7 col-sm-offset-0 col-md-6 col-lg-8">
-              <h3>Tithi</h3>
-              <p>Details If needed</p>
-            </div><!-- info -->
-          </div> <!-- inner row -->
-        </div> <!-- teammember -->
-
-        <div class="teammember col-lg-3">
-          <div class="row">
-            <div class="photo col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
-              <img class="img-circle" src="images/profile_pic.jpg" alt="Photo of Dr Sanders">
-            </div><!-- photo -->
-            <div class="info col-xs-8 col-xs-offset-2 col-sm-7 col-sm-offset-0 col-md-6 col-lg-8">
-              <h3>Surbhi</h3>
-              <p>Details If needed</p>
-            </div><!-- info -->
-          </div> <!-- inner row -->
-        </div> <!-- teammember -->
-
-        <div class="teammember col-lg-3">
-          <div class="row">
-            <div class="photo col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
-              <img class="img-circle" src="images/profile_pic.jpg" alt="Photo of Dr Sanders">
-            </div><!-- photo -->
-            <div class="info col-xs-8 col-xs-offset-2 col-sm-7 col-sm-offset-0 col-md-6 col-lg-8">
-              <h3>Sanjay</h3>
-              <p>Details If needed</p>
-            </div><!-- info -->
-          </div> <!-- inner row -->
-        </div> <!-- teammember -->
-
-        <div class="teammember col-lg-3">
-          <div class="row">
-            <div class="photo col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
-              <img class="img-circle" src="images/profile_pic.jpg" alt="Photo of Dr Sanders">
-            </div><!-- photo -->
-            <div class="info col-xs-8 col-xs-offset-2 col-sm-7 col-sm-offset-0 col-md-6 col-lg-8">
-              <h3>Pramod</h3>
-              <p>Details If needed</p>
-            </div><!-- info -->
-          </div> <!-- inner row -->
-        </div> <!-- teammember -->
-
-        <div class="teammember col-lg-3">
-          <div class="row">
-            <div class="photo col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-1 col-md-2 col-md-offset-2 col-lg-4 col-lg-offset-0">
-              <img class="img-circle" src="images/profile_pic.jpg" alt="Photo of Dr Sanders">
-            </div><!-- photo -->
-            <div class="info col-xs-8 col-xs-offset-2 col-sm-7 col-sm-offset-0 col-md-6 col-lg-8">
-              <h3>Suman</h3>
-              <p>Details If needed</p>
-            </div><!-- info -->
-          </div> <!-- inner row -->
-        </div> <!-- teammember -->
-      </div><!-- outer row -->
-    </div><!-- container -->
-  </div><!-- staff page -->
-
-  
 </div><!-- main -->
 
 <footer>
@@ -278,7 +281,7 @@
             <li><a href="#">Terms of use</a></li>
             <li><a href="#">Privacy policy</a></li>
           </ul>
-        </nav>        
+        </nav>
       </div><!-- col-sm-6 -->
     </div><!-- row -->
   </div><!-- content container -->
