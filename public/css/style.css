@@ -269,7 +269,6 @@ and (max-width: 768px) {
 }
 
 #patients #patient1 {
-  background: url(../images/p1.JPG) no-repeat center center;
   background-size: cover;
 }
 
