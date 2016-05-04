@@ -1,0 +1,19 @@
+{
+  "name": "data",
+  "statement1": "Our mission is to fund low-cost, high-impact healthcare. While we would like to eventually work in the United States, we currently focus our efforts in low income countries because it’s more frequently the case that a relatively small amount of money stands in the way of someone receiving life-changing care.",
+  "statement2": "We take patient privacy very seriously. It’s important to us that every patient posted on iCare understands what iCare is and how it works. Our Medical Partners are responsible for ensuring that every patient understands Watsi and explicitly wishes to participate in the program.",
+  "amt_raised": "20000",
+  "project_count": "1345",
+  "donation_count": "945"
+  "patient1" : {
+    "name" : "Brian",
+    "heading": "Brian is a child from Kenya who needs $540 for testicular surgery.",
+    "desc":"Brian is a wonderfully cheeky young boy, with so much goodness and potential in him. I know he is greatly at risk and it is my only wish that he gets treated for his condition,” shares Brian’s mother. Brian is a two-year-old toddler who lives with his older sister and parents in the suburbs of Nairobi, Kenya.",
+    "fund_needed":"540",
+    "fund_raised":"200",
+    "image_url":""
+  },
+  "patient2" : {
+
+  }
+}
