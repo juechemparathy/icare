@@ -81,7 +81,8 @@ $(function() {
   }
 
   $('.carousel').carousel({
-    pause: false
+    pause: false,
+    interval: '35000'
   });
 
 });
