@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+    <div class="modal dismissable in" id="log_in_modal" tabindex="-1" aria-hidden="false" style="display: block;"><a class="close_modal" href="#">Close</a>
+        <div class="modal_body">
+            <h1 class="standard">
+    Log in
+</h1>
+            <div id="msg" class="text-danger"></div>
+            <form novalidate="novalidate" class="row standard floating_labels log_in_form" onsubmit="return false;">
+                <fieldset class="span10">
+                    <div class="form_row">
+                        <div class="form_group floating email">
+                            <label for="email" class="email">Email Address</label>
+                            <input name="email" id="email" type="email" placeholder="Email Address" class="email" autofocus="true" id="email" onkeyup="checkLoginToActivate(this)">
+
+                        </div>
+                    </div>
+                    <div class="form_row">
+                        <div class="form_group floating password">
+                            <label for="password" class="password">Password</label>
+                            <input name="password" id="password" type="password" placeholder="Password" class="password" onkeyup="checkLoginToActivate(this)">
+
+                        </div>
+                    </div>
+                    <div class="form_row forgot_password_row">
+                        <a href="#forgot_password_modal" class="offset6" data-toggle="modal">Forgot password?</a>
+                    </div>
+                    <button type="submit" data-loadable="true" class="button primary" disabled="" id="btnSubmit" onclick="save()">Log in</button>
+                    <span class="sign_up">Don't have an account? <a href="signup.ejs" class="sign_up">Sign up here</a></span>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var btnSubmit = document.getElementById("btnSubmit");
+        var msg = document.getElementById("msg");
+
+        function checkLoginToActivate(e) {
+
+            if (btnSubmit.hasAttribute("disabled")) {
+                if (email.value && password.value) {
+                    btnSubmit.removeAttribute("disabled");
+                } else {
+                    btnSubmit.setAttribute("disabled", "");
+                }
+            }
+
+        }
+
+        function save() {
+            let localEmail = localStorage.getItem("email");
+            let localPassword = localStorage.getItem("password");
+            if (localEmail === email.value && localPassword === password.value) {
+                console.log("Successful");
+                location.href = "indexName.html";
+            } else {
+                msg.innerHTML = "Wrong Credentials! Please try again!";
+            }
+        }
+    </script>
+</body>
+
+</html>

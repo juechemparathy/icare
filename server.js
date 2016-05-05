@@ -43,6 +43,8 @@ var routes = require('./routes/index');
 var patients = require('./routes/patients');
 var iglobe = require('./routes/iglobe');
 var patientDetail = require('./routes/patientDetail');
+var login = require('./routes/login');
+var signup = require('./routes/signup');
 
 
 // use res.render to load up an ejs view file
@@ -59,6 +61,8 @@ app.use('/', routes);
 app.use('/patients', patients);
 app.use('/iglobe', iglobe);
 app.use('/patientDetail', patientDetail);
+app.use('/login', login);
+app.use('/signup', signup);
 
 // catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

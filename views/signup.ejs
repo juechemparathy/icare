@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+    <div class="modal dismissable in" id="log_in_modal" tabindex="-1" aria-hidden="false" style="display: block;"><a class="close_modal" href="#">Close</a>
+        <div class="modal_body">
+            <h1 class="standard">
+    Sign Up
+</h1>
+
+            <form novalidate="novalidate" class="row standard floating_labels log_in_form" onsubmit="return false;">
+                <fieldset class="span10">
+                    <div class="form_row">
+                        <div class="form_group floating email">
+                            <label for="fullname" class="fullname">Full Name</label>
+                            <input name="fullname" id="fullname" type="text" placeholder="Full Name" class="fullname" onkeyup="checkLoginToActivate()" autofocus="true">
+
+                        </div>
+                    </div>
+                    <div class="form_row">
+                        <div class="form_group floating email">
+                            <label for="email" class="email">Email Address</label>
+                            <input name="email" id="email" type="email" placeholder="Email Address" class="email" onkeyup="checkLoginToActivate()">
+
+                        </div>
+                    </div>
+                    <div class="form_row">
+                        <div class="form_group floating password">
+                            <label for="password" class="password">Password</label>
+                            <input name="password" id="password" type="password" placeholder="Password" class="password" onkeyup="checkLoginToActivate()">
+
+                        </div>
+                    </div>
+                    <!--<div class="form_row forgot_password_row">
+                        <a href="#forgot_password_modal" class="offset6" data-toggle="modal">Forgot password?</a>
+                    </div>-->
+                    <button data-loadable="true" class="button primary" disabled="" id="btnSubmit" onclick="save()">Sign Up</button>
+                    <span class="sign_up">Already have a account? <a href="login.ejs" class="sign_up">Log in here</a></span>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script>
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var fullname = document.getElementById("fullname");
+        var btnSubmit = document.getElementById("btnSubmit");
+        
+        function checkLoginToActivate(e) {
+
+            if (btnSubmit.hasAttribute("disabled")) {
+                if (email.value && password.value && fullname.value) {
+                    btnSubmit.removeAttribute("disabled");
+                } else {
+                    btnSubmit.setAttribute("disabled", "");
+                }
+            }
+
+        }
+
+        function save() {
+            localStorage.setItem("fullname", fullname.value);
+            localStorage.setItem("email", email.value);
+            localStorage.setItem("password", password.value);
+
+            console.log("Successful");
+            location.href = "login.ejs";
+        }
+    </script>
+
+</body>
+
+</html>
