@@ -25,7 +25,7 @@ router.get('/test', function(req, res) {
                res.render('error');
            } else {
                res.render('index', {
-                   title: event[0].name,
+                   title: event[0].title,
                    statement1: event[0].statement1,
                    statement2: event[0].statement2,
                    amt_raised: event[0].amt_raised,
