@@ -32,6 +32,26 @@
           <li class="active"><a href="/">HOME</a></li>
           <li><a href="#mission">MISSION</a></li>
           <li><a href="#patients">PATIENTS</a></li>
+          <li class="btn-group">
+            <div id="loggedOutItem" class="btn-group" style="display:none;">
+              <a href="/signup" class="btn btn-info">Sign Up</a>
+              <a href="/login" class="btn btn-primary">Login</a>
+            </div>
+            <div id="loggedInItem" class="btn-group" style="display:none;">
+              <button type="button" class="btn btn-danger">
+                <a href="" id="username"></a>
+              </button>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+
+
+              <ul class="dropdown-menu">
+                <li class="text-primary"><a href="#" style="color:black" onclick="logout()">Log Out</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div><!-- collapse navbar-collapse -->
     </div><!-- container -->
@@ -218,5 +238,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="js/myscript.js"></script>
+<script>
+  /*Please use this code common everywhere this will reflect name on the header and mention the button*/
+  (function () {
+    if (!!localStorage.getItem("email") && !!localStorage.getItem("password")) {
+      $("#loggedOutItem").hide();
+      $("#loggedInItem").show();
+      $("#username").html(localStorage.getItem("fullname").split(" ")[0]);
+    } else {
+      $("#loggedOutItem").show();
+      $("#loggedInItem").hide();
+    }
+
+  })();
+
+  function logout() {
+    localStorage.clear();
+    location.reload();
+  }
+</script>
 </body>
 </html>
