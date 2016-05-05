@@ -45,6 +45,7 @@ var iglobe = require('./routes/iglobe');
 var patientDetail = require('./routes/patientDetail');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
+var stats = require('./routes/stats');
 
 
 // use res.render to load up an ejs view file
@@ -60,6 +61,7 @@ app.use(function(req,res,next){
 app.use('/', routes);
 app.use('/patients', patients);
 app.use('/iglobe', iglobe);
+app.use('/stats', stats);
 app.use('/patientDetail', patientDetail);
 app.use('/login', login);
 app.use('/signup', signup);
