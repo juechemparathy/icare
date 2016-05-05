@@ -31,7 +31,7 @@
                         <a href="#forgot_password_modal" class="offset6" data-toggle="modal">Forgot password?</a>
                     </div>
                     <button type="submit" data-loadable="true" class="button primary" disabled="" id="btnSubmit" onclick="save()">Log in</button>
-                    <span class="sign_up">Don't have an account? <a href="signup.ejs" class="sign_up">Sign up here</a></span>
+                    <span class="sign_up">Don't have an account? <a href="/signup" class="sign_up">Sign up here</a></span>
                 </fieldset>
             </form>
         </div>
@@ -60,7 +60,7 @@
             let localPassword = localStorage.getItem("password");
             if (localEmail === email.value && localPassword === password.value) {
                 console.log("Successful");
-                location.href = "indexName.html";
+                location.href = "/";
             } else {
                 msg.innerHTML = "Wrong Credentials! Please try again!";
             }

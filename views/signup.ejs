@@ -38,7 +38,7 @@
                         <a href="#forgot_password_modal" class="offset6" data-toggle="modal">Forgot password?</a>
                     </div>-->
                     <button data-loadable="true" class="button primary" disabled="" id="btnSubmit" onclick="save()">Sign Up</button>
-                    <span class="sign_up">Already have a account? <a href="login.ejs" class="sign_up">Log in here</a></span>
+                    <span class="sign_up">Already have a account? <a href="/login" class="sign_up">Log in here</a></span>
                 </fieldset>
             </form>
         </div>
@@ -67,7 +67,7 @@
             localStorage.setItem("password", password.value);
 
             console.log("Successful");
-            location.href = "login.ejs";
+            location.href = "/login";
         }
     </script>
 
