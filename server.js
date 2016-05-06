@@ -102,4 +102,4 @@ app.listen(port, ipaddress, function() {
         Date(Date.now() ), ipaddress, port);
 });
 
-console.log('5000 is the magic port');
+console.log('5000 is the magic local port');
