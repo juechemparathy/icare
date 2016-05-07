@@ -1,3 +1,6 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+* To run on local
+* checkout the project
+* Open terminal and go to project folder
+* node server
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+* On browser go to localhost:5000
