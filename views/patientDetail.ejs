@@ -21,26 +21,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <!--<script type="text/javascript">-->
-    <!--function getPatientData() {-->
-      <!--//e.preventDefault();-->
-      <!--httpRequest = new XMLHttpRequest();-->
-      <!--httpRequest.onreadystatechange = handleResponse;-->
-      <!--httpRequest.open("POST", "https://raw.githubusercontent.com/juechemparathy/juechemparathy.github.io/master/data/patients-dummy.json");-->
-      <!--httpRequest.send();-->
-    <!--}-->
-
-    <!--function handleResponse() {-->
-      <!--if (httpRequest.readyState == 4 && httpRequest.status == 200) {-->
-        <!--var patientJson = httpRequest.responseText;-->
-        <!--var patientData = JSON.parse(patientJson);-->
-        <!--document.getElementById("name").innerHTML = patientData[0].name;-->
-        <!--document.getElementById("description").innerHTML = patientData[0].description;-->
-        <!--document.getElementById("image").src = patientData[0].image;-->
-        <!--var value = (patientData[0].fundsgot) / (patientData[0].fundsneeded);-->
-      <!--}-->
-    <!--}-->
-
   <!--</script>-->
 </head>
 
@@ -96,7 +76,7 @@
       <h2><strong>My Story</strong></h2>
       <div class="row">
         <div class="col-md-6 col-lg-3" width="100%">
-          <img class="img-circle" src="./images/p1.JPG" alt="patient name" width="100%" height="100%">
+          <img class="img-circle" src="<%=p_image_url%>" alt="patient name" width="100%" height="100%">
           <div><a class="twitter-share-button"
                   href="https://twitter.com/share">
               Tweet
@@ -116,8 +96,8 @@
         </div>
 
         <div class="col-md-6 col-lg-3" width="100%">
-          <h3><strong>Brian is a child from Kenya who needs $540 for testicular surgery.</strong></h3>
-          <p>Brian is a wonderfully cheeky young boy, with so much goodness and potential in him. I know he is greatly at risk and it is my only wish that he gets treated for his condition,” shares Brian’s mother. Brian is a two-year-old toddler who lives with his older sister and parents in the suburbs of Nairobi, Kenya.</p>
+          <h3><strong><%=p_heading%></strong></h3>
+          <p><%=p_desc%></p>
         </div>
 
         <div class="col-md-6 col-lg-3" width="100%">
@@ -144,7 +124,7 @@
           <div class="d3js" align="center">
             <svg id="fillgauge2" width="100%" height="250px" ></svg>
             <script language="JavaScript">
-              var percent2 = 68.0;
+              var percent2 = Math.floor(Math.random() * 75) + 1  ;
               var config2 = liquidFillGaugeDefaultSettings();
               config2.circleColor = "#4E9258";
               config2.textColor = "#0E5144";
@@ -163,10 +143,6 @@
       </div>
     </div><!-- container -->
   </div><!-- patients page -->
-
-
-
-
 
   <div class="page" id="patients">
     <h2>Choose a patient to support</h2>

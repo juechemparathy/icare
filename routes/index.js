@@ -31,6 +31,7 @@ router.get('/test', function(req, res) {
                    amt_raised: event[0].amt_raised,
                    project_count: event[0].project_count,
                    donation_count: event[0].donation_count,
+
                    patient1_name: event[0].patient1.name,
                    patient1_heading: event[0].patient1.heading,
                    patient1_desc: event[0].patient1.desc,
@@ -72,6 +73,7 @@ router.get('/test', function(req, res) {
                    patient6_fund_needed: event[0].patient6.fund_needed,
                    patient6_fund_raised: event[0].patient6.fund_raised,
                    patient6_image_url: event[0].patient6.image_url,
+
                    patient7_name: event[0].patient7.name,
                    patient7_heading: event[0].patient7.heading,
                    patient7_desc: event[0].patient7.desc,
